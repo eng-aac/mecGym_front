@@ -1,0 +1,16 @@
+{
+  "appId": "com.mecanizados.mecgym.app",
+  "appName": "mec-gym",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist/mec-gym",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    },
+    "LocalNotifications": {
+      "smallIcon": "n_icon"
+    }
+  },
+  "cordova": {}
+}

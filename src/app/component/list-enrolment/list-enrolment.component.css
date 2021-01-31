@@ -1,0 +1,20 @@
+.img-browse{
+    max-width: 20px;
+    max-height: 20px;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #343A40;
+    margin-top: 1em;
+}
+
+.img-action-p{
+    max-width: 46px;
+    max-height: 46px;
+}
+
+.img-action-d{
+    max-width: 30px;
+    max-height: 30px;
+}
+

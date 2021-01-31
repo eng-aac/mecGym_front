@@ -1,0 +1,103 @@
+<div class="container mt-sm-2 mt-5">
+    <div class="row container min d-flex justify-content-center align-items-center m-0 p-0">
+        <div class="col-md-12 col-sm-6 border border-white rounded p-4">
+            <form [formGroup]="formsCustomer">
+                <h4 class="mb-4 p-0 align-self-center col-md-4">{{titleForm}}</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" class="form-control" placeholder="Por favor, ingrese el nombre..." formControlName="name">
+                            <div *ngIf="formsCustomer.controls['name'].invalid && formsCustomer.controls['name'].dirty" class="alert alert-danger" role="alert">
+                                <span *ngIf="formsCustomer.controls['name'].errors.required">El nombre es requerido.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="surname">Apellido</label>
+                            <input type="text" class="form-control" placeholder="Por favor, ingrese el apellido..." formControlName="surname">
+                            <div *ngIf="formsCustomer.controls['surname'].invalid && formsCustomer.controls['surname'].dirty" class="alert alert-danger" role="alert">
+                                <span *ngIf="formsCustomer.controls['surname'].errors.required">El apellido es requerido.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" placeholder="Por favor, ingrese el email..." formControlName="email">
+                            <div *ngIf="formsCustomer.controls['email'].invalid && formsCustomer.controls['email'].dirty" class="alert alert-danger" role="alert">
+                                <span *ngIf="formsCustomer.controls['email'].errors.required">El correo es requerido.</span>
+                                <span *ngIf="formsCustomer.controls['email'].errors.email">El correo no es válido.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="identityCard">Cédula de identificación</label>
+                            <input type="text" class="form-control" placeholder="Por favor, ingrese la cédula.." formControlName="identityCard">
+                            <div *ngIf="formsCustomer.controls['identityCard'].invalid && formsCustomer.controls['identityCard'].dirty" class="alert alert-danger" role="alert">
+                                <span *ngIf="formsCustomer.controls['identityCard'].errors.required">La cédula es requerida.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="birthday">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" placeholder="Por favor, ingrese el fecha de nacimiento..." formControlName="birthday">
+                            <div *ngIf="formsCustomer.controls['birthday'].invalid && formsCustomer.controls['birthday'].dirty" class="alert alert-danger" role="alert">
+                                <span *ngIf="formsCustomer.controls['birthday'].errors.required">La fecha de nacimiento es requerida.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="cellPhoneNumer">Celular</label>
+                            <input type="text" class="form-control" placeholder="Por favor, ingrese el celular..." formControlName="cellPhoneNumer">
+                            <div *ngIf="formsCustomer.controls['cellPhoneNumer'].invalid && formsCustomer.controls['cellPhoneNumer'].dirty" class="alert alert-danger" role="alert">
+                                <span *ngIf="formsCustomer.controls['cellPhoneNumer'].errors.required">El celular es requerido.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="form-group">
+                            <label for="imgUrl">Foto</label>
+                            <input type="file" (change)="uploadImg($event)" class="form-control-file" placeholder="Por favor, ingrese una imagen..." formControlName="imgUrl">
+                            <div *ngIf="formsCustomer.controls['imgUrl'].invalid && formsCustomer.controls['imgUrl'].dirty" class="alert alert-danger" role="alert">
+                                <span *ngIf="formsCustomer.controls['imgUrl'].errors.required">La foto es requerida.</span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6 col-12 space">
+                        <div class="mb-4 mb-sm-0">
+                            <progressbar [value]="percentage" type="dark" [striped]="true">{{ percentage }} %</progressbar>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <button type="submit" *ngIf="!isEdit" [disabled]="formsCustomer.invalid && !urlImage" (click)="post()" class="btn btn-dark mt-4 btn-block">Agregar</button>   
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" *ngIf="!isEdit" (click)="clean()" class="btn btn-danger mt-4 btn-block">Limpiar</button>   
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <button type="submit" *ngIf="isEdit" [disabled]="formsCustomer.invalid && !urlImage" (click)="put()" class="btn btn-warning mt-5 btn-block">Actualizar</button>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" *ngIf="isEdit" (click)="cancel()" class="btn btn-danger mt-5 btn-block">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

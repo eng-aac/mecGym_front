@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "mec-gym": {
+      "hosting": {
+        "mec-gym": [
+          "mec-gym"
+        ]
+      }
+    }
+  }
+}

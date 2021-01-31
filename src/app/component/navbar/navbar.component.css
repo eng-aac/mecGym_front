@@ -1,0 +1,26 @@
+.width{
+    width: max-content;
+}
+
+.dropdown-item:visited{
+    color: black;
+    background-color: white !important;
+}
+ 
+
+.dropdown-item:hover{
+    color: black;
+    background-color: white !important;
+}
+
+
+.dropdown-item:active{
+    color: #927895;
+    background-color: white !important;
+}
+
+.user{
+    color: darkslateblue;
+    font-size: 16px;
+    padding-top: 3px;
+}

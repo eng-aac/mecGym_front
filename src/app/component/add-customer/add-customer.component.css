@@ -1,0 +1,25 @@
+@media screen and (max-height: 800px){
+    .form{
+        margin-bottom: 10vh;
+    }
+}
+
+.min{
+    min-height: 80vh;
+}
+
+@media screen and (min-width: 800px){
+    .space{
+        padding-top: 39px;
+    }
+}
+
+@media screen and (max-width: 800px){
+    .space{
+        padding-top: 4px;
+    }
+}
+
+
+
+

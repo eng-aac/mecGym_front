@@ -1,0 +1,16 @@
+.img-user{
+    margin: auto;
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.img-browse{
+    max-width: 20px;
+    max-height: 20px;
+}
+
+.a-hover:hover{
+    cursor:pointer;
+}
+
+

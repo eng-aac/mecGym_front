@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row container text-center min-vh-100 d-flex justify-content-center align-items-center m-0 p-0">
+      <div class="col-md-6 col-sm-8 border border-white rounded">
+        <div class="text-center">
+          <br>
+          <h3>Bienvenido, a MecGym!</h3>
+          <p class="lead">
+            Por favor, ingrese sus credenciales.
+          </p>
+          <br>
+          <img class="img-logo" src="assets/logo-gym.png" alt="logo-gym">
+        </div>
+      
+        <form [formGroup]="formsLogin">
+            <br>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Por favor, ingrese su email..." formControlName="email">
+                
+              <div *ngIf="formsLogin.controls['email'].invalid && formsLogin.controls['email'].dirty" class="alert alert-danger" role="alert">
+                <span *ngIf="formsLogin.controls['email'].errors.required">El correo es requerido.</span>
+                <span *ngIf="formsLogin.controls['email'].errors.email">El correo no es válido.</span>
+              </div>
+            </div>
+          
+            <div class="form-group">
+              <label for="password">Contraseña</label>
+              <input type="password" (keyUp.enter)="enterOkay()" class="form-control" id="password" placeholder="Por favor, ingrese su contraseña..." formControlName="password">
+            
+              <div *ngIf="formsLogin.controls['password'].invalid && formsLogin.controls['password'].dirty" class="alert alert-danger" role="alert">
+                <span *ngIf="formsLogin.controls['password'].errors.required">La contraseña es requerida.</span>
+              </div>  
+            </div>
+            
+            <div class="text-center">
+                <button type="submit" (click)="enterOkay()" [disabled]="!formsLogin.valid" class="btn btn-dark btn-block mt-5">Ingresar</button>
+            </div>
+        </form>
+  
+        <br>
+        <div *ngIf="!correctData" class="alert alert-warning" role="alert">
+          {{ errorText }}
+        </div>
+    
+        <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "square-jelly-box" [fullScreen] = "true">
+            <p style="color: white" > Ingresando a MecGym... </p>
+        </ngx-spinner>
+      </div>
+    </div>  
+</div>

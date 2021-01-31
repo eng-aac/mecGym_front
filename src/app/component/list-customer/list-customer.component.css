@@ -1,0 +1,20 @@
+.img-user{
+    margin: auto;
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.img-browse{
+    max-width: 20px;
+    max-height: 20px;
+}
+
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #343A40;
+    margin-top: 1em;
+}
+
+ul{
+    padding-inline-start: 0;
+}
+

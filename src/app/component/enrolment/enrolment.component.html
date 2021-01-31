@@ -1,0 +1,101 @@
+<div class="container mt-5 mb-5">
+    <div class="row d-flex">
+        <h4 class="mb-0 align-self-center col-md-4">Agregar Inscripción</h4>     
+    </div>
+    
+    <div class="row">
+        <div class="col-md-4 mt-5">
+            <label for="customerSelected">Cliente</label>
+            <app-select-customer
+                [name]="customerSelected.id" 
+                (selectedCustomer)="assignCustomer($event)"
+                (canceledCustomer)="outCustomer()"
+            >
+            </app-select-customer>
+
+            <div class="row d-flex mt-1 justify-content-center">
+                <div class="card" *ngIf="customerSelected.name">
+                    <img class="card-img-top img-user mt-4" [src]="customerSelected.imgUrl" alt="icon-user">
+                    <div class="card-body">
+                        <h6 class="card-title text-center text-secondary small">{{ customerSelected.id }}</h6>
+                        <h4 class="card-title text-center">{{ customerSelected.name }} {{ customerSelected.surname }}</h4>
+                        <hr>
+                        <h5 class="card-title text-center text-success mt-4">{{ customerSelected.cellPhoneNumer }}</h5>
+                        <h5 class="card-title text-center text-success">{{ customerSelected.email }}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-1 mt-5"></div>
+
+        <div class="col-md-7 mt-sm-5 mt-2">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="price_typeEnrolment">Actividad</label>
+                        <select [(ngModel)]="idPrice" (change)="selectPrice($event.target.value)" class="form-control" id="price_typeEnrolment">
+                            <option [value]="null" disabled selected>Seleccione la actividad...</option>
+                            <option *ngFor="let price of prices" [value]="price.id"> {{ price.name }} </option>
+                        </select>
+                    </div>
+        
+                    <div class="form-group mt-3">
+                        <label for="dateStart">Fecha Inicio</label>
+                        <input [value]="enrolment.dateStart | date" type="text" disabled class="form-control" id="dateStart">
+                    </div>
+        
+                    <div class="form-group mt-3">
+                        <label for="dateFinal">Fecha Fin</label>
+                        <input [value]="enrolment.dateFinal | date" type="text" disabled class="form-control" id="dateFinal">
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="subtotal">Subtotal</label>
+                        <input [value]="enrolment.subtotal" type="number" disabled class="form-control" id="subtotal">
+                    </div>
+        
+                    <div class="form-group mt-3">
+                        <label for="iva">IVA</label>
+                        <input [value]="enrolment.iva" type="number" disabled class="form-control" id="iva">
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label for="discount">Descuento</label>
+                        <input [(ngModel)]="discount" (change)="calculateTotal($event.target.value)" type="number" class="form-control" id="discount" placeholder="Aplique un descuento...">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row space">
+                <div class="col-md-6">
+                    <div class="form-group mt-5" *ngIf="discount">
+                        <label for="calculate">Factura</label>
+                        <button type="button" (click)="calculateTotal(discount)" [disabled]="!idPrice" id="calculate" class="btn btn-warning btn-block">
+                            Re-Calcular
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mt-5">
+                        <label for="total">TOTAL</label>
+                        <input [value]="enrolment.total" type="number" disabled class="form-control" id="total">
+                    </div>  
+                </div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-6">
+                    <button type="submit" (click)="saveEnrolment()" class="btn btn-dark mt-5 btn-block">
+                        Guardar
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button type="submit" (click)="clean()" class="btn btn-danger mt-5 btn-block">Limpiar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

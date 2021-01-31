@@ -2,6 +2,7 @@
 
 # compiled output
 /dist
+/windows
 /tmp
 /out-tsc
 # Only exists if Bazel was run

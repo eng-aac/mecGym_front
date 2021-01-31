@@ -1,0 +1,122 @@
+<div class="pb-5">
+  <nav class="navbar navbar-dark bg-dark fixed-top p-2">
+  
+    <div class="container pr-1 pr-sm-3">
+      <div class="text-white text-center">
+        <i class="fas fa-dumbbell mr-2 fa-1x pt-3"></i>
+        <a class="navbar-brand p-0 ml-0" routerLink="enrolment"> 
+          <h5><strong>MecGym</strong></h5>   
+        </a>
+      </div>
+    
+      <form class="form-inline">
+        <div class="nav-item dropdown">
+          <a *ngIf="user" class="navbar-text dropdown-toggle text-white ml-0 mr-4 mt-1" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-cog fa-lg"></i>
+          </a>
+
+          <div class="dropdown-menu bg-secondary dropdown-menu-right width" aria-labelledby="dropdownMenuLink">
+            <div class="dropdown-header font-weight-bold d-flex justify-content-center min-h-100 align-items-center">
+              <div class="row">
+                <div class="col-3 pt-1 pr-0">
+                  <span class="text-white">Hola, </span>
+                </div>
+                <div class="col-9 user font-italic">
+                  <span> {{ users }}</span>
+                </div>
+              </div>
+            </div>
+        
+            <div class="dropdown-divider"></div>
+
+            <a routerLinkActive="active" class="dropdown-item" routerLink="enrolment">
+              <div class="row">
+                <div class="col-2 d-flex justify-content-center min-h-100 align-items-center">
+                  <i class="fas fa-address-book"></i>
+                </div>
+                <div class="col-10 mt-1">
+                  Personalizar Inscripción
+                </div>
+              </div>
+            </a>
+
+            <a routerLinkActive="active" class="dropdown-item" routerLink="list-enrolment">
+              <div class="row">
+                <div class="col-2 d-flex justify-content-center min-h-100 align-items-center">
+                  <i class="fas fa-list-alt"></i>
+                </div>
+                <div class="col-10 mt-1">
+                  Inscripciones
+                </div>
+              </div> 
+            </a>
+
+            <a routerLinkActive="active" class="dropdown-item" routerLink="add-customer">
+              <div class="row">
+                <div class="col-2 d-flex justify-content-center min-h-100 align-items-center">
+                  <i class="fas fa-user-edit"></i>
+                </div>
+                <div class="col-10 mt-1">
+                  Personalizar Cliente
+                </div>
+              </div>
+            </a>
+
+            <a routerLinkActive="active" class="dropdown-item" routerLink="list-customer">
+              <div class="row">
+                <div class="col-2 d-flex justify-content-center min-h-100 align-items-center">
+                  <i class="fas fa-users"></i>
+                </div>
+                <div class="col-10 mt-1">
+                  Clientes
+                </div>
+              </div>
+            </a>
+
+            <a routerLinkActive="active" class="dropdown-item" routerLink="prices">
+              <div class="row">
+                <div class="col-2 d-flex justify-content-center min-h-100 align-items-center">
+                  <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <div class="col-10 mt-1">
+                  Precios
+                </div>
+              </div> 
+            </a>
+            
+            <div class="dropdown-divider"></div>
+            
+            <a routerLinkActive="active" class="dropdown-item" routerLink="help">
+              <div class="row">
+                <div class="col-2 d-flex justify-content-center min-h-100 align-items-center">
+                  <i class="far fa-question-circle"></i>
+                </div>
+                <div class="col-10 mt-1">
+                  Ayuda
+                </div>
+              </div>
+            </a>
+
+            <a routerLinkActive="active" class="dropdown-item" routerLink="about">
+              <div class="row">
+                <div class="col-2 d-flex justify-content-center min-h-100 align-items-center">
+                  <i class="far fa-address-card"></i>
+                </div>
+                <div class="col-10 mt-1">
+                  Nosotros
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <button class="btn btn-outline-danger my-1 my-sm-0 text-white btn-sm" type="submit" (click)="logout()">
+          Salir <i class="fas fa-sign-out-alt"></i> 
+        </button>
+      </form>
+    </div> 
+  
+  </nav>
+</div>
+
+
+

@@ -1,0 +1,111 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h4 class="mb-0">Actividades y Costos</h4>
+            <form class="mt-2 align-self-center col-sm-12 pl-0 pr-0">
+                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                <div class="input-group mb-0">
+                    <input (input)="browsePrice($event.target.value)" type="text" class="form-control" placeholder="Busque una actividad">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <img class="img-browse" src="assets/browse-user.png" alt="browse-user">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <pagination-controls class="mt-2 my-pagination align-self-center" (pageChange)="pages = $event"></pagination-controls>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="container" style="height: 300px;" *ngIf="loading">
+                        <div class="d-flex justify-content-center align-items-center h-100">
+                          <div class="spinner-border text-dark" role="status">
+                            <span class="sr-only">Loading...</span>
+                          </div>
+                        </div>
+                    </div>
+
+                    <table class="table table-responsive table-hover mt-3" *ngIf="!loading">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Costo</th>
+                            <th scope="col">Plazo</th>
+                            <th scope="col">Suscripción</th>
+                            <th scope="col">Acción</th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let price of prices | paginate: { itemsPerPage: 5, currentPage: pages }" >
+                          <tr *ngIf="price.seeable">
+                            <th scope="row">
+                                <a (click)="viewPrice(price)" class="btn btn-light btn-block btn-sm" role="button" aria-pressed="true">
+                                    {{ price.name }}
+                                </a>
+                            </th>
+                            <td>{{ price.cost | currency }}</td>
+                            <td>{{ price.duration }}</td>
+                            <td>{{ price.type_duration }}</td>
+                            <td>
+                                <button (click)="deletePrice(price.id)" type="submit" class="btn btn-block btn-sm btn-outline-danger">
+                                    <i class="fas fa-trash-alt mt-1"></i>
+                                </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mt-3 mt-sm-0 pl-sm-5">
+            <h4>{{titleForm}}</h4>
+            <form [formGroup]="formsPrices" class="form-se">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" class="form-control" id="text" placeholder="Por favor, ingrese nombre de suscripción..." formControlName="name">    
+                </div>
+
+                <div class="form-group">
+                    <label for="cost">Costo</label>
+                    <input type="number" class="form-control" id="cost" placeholder="Por favor, ingrese costo de suscripción..." formControlName="cost">    
+                </div>
+
+                <div class="form-group">
+                    <label for="duration">Plazo</label>
+                    <input type="number" class="form-control" id="duration" placeholder="Por favor, ingrese plazo de suscripción..." formControlName="duration">    
+                </div>
+
+                <div class="form-group">
+                    <label for="type_duration">Tipo de Suscripción</label>
+                    <select class="form-control" id="type_duration" formControlName="type_duration">
+                        <option value="null" disabled selected>Por favor, indique tipo de suscripción...</option>
+                        <option value="Día">Día</option>
+                        <option value="Semana">Semana</option>
+                        <option value="Quincena">Quincena</option>
+                        <option value="Mes">Mes</option>
+                        <option value="Año">Año</option>
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <button *ngIf="!isEdit" type="submit" [disabled]="formsPrices.invalid" (click)="addPrice()" class="btn btn-dark mt-5 btn-block">Agregar</button>
+                    </div>
+                    <div class="col-6">
+                        <button *ngIf="!isEdit" type="submit" (click)="clean()" class="btn btn-danger mt-5 btn-block">Limpiar</button>   
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <button *ngIf="isEdit" type="submit" [disabled]="formsPrices.invalid" (click)="putPrice()" class="btn btn-warning mt-5 btn-block">Actualizar</button>
+                    </div>
+                    <div class="col-6">
+                        <button *ngIf="isEdit" type="submit" [disabled]="formsPrices.invalid" (click)="cancel()" class="btn btn-danger mt-5 btn-block">Cancelar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>  
+</div>

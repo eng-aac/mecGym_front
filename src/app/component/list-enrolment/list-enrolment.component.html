@@ -1,0 +1,72 @@
+<div class="container mt-5 mb-5">
+    <div class="row d-flex">
+      <h4 class="mb-0 align-self-center col-md-4">Listado de Inscripciones</h4>
+      <form class="mt-2 mt-sm-0 align-self-center col-md-3">
+        <label class="sr-only" for="inlineFormInputGroup">Username</label>
+        <div class="input-group mb-0">
+            <input (input)="browseCustomer($event.target.value)" type="text" class="form-control" placeholder="Busque un cliente">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <img class="img-browse" src="assets/browse-user.png" alt="browse-user">
+                </div>
+            </div>
+        </div>
+      </form>
+      <pagination-controls class="mt-2 mt-sm-0 my-pagination col-md-5 align-self-center pr-0" (pageChange)="pages = $event"></pagination-controls>
+    </div>
+
+    <div class="container" style="height: 300px;" *ngIf="loading">
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="spinner-border text-dark" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+
+    <table *ngIf="!loading" class="table table-responsive table-hover mt-5" id="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">DU</th>
+            <th scope="col">Celular</th>
+            <th scope="col">Actividad</th>
+            <th scope="col">Inicio</th>
+            <th scope="col">Fin</th>
+            <th scope="col">Subtotal</th>
+            <th scope="col">IVA</th>
+            <th scope="col">Descuento</th>
+            <th scope="col">TOTAL</th>
+            <th scope="col">Acciones</th> 
+          </tr>
+        </thead>
+        <tbody *ngFor="let enrolment of enrolments | paginate: { itemsPerPage: 4, currentPage: pages }">
+          <tr *ngIf="enrolment.getCustomer.seeable">
+            <th scope="row">{{ enrolment.getCustomer.name }} {{ enrolment.getCustomer.surname }}</th>
+            <td>{{ enrolment.getCustomer.identityCard }}</td> 
+            <td>{{ enrolment.getCustomer.cellPhoneNumer }}</td>
+            <td>{{ enrolment.getPrice.name }}</td>
+            <td>{{ enrolment.dateStart | date }}</td>
+            <td>{{ enrolment.dateFinal | date }}</td>
+            <td>{{ enrolment.subtotal | currency }}</td>
+            <td>{{ enrolment.iva | currency }}</td>
+            <td>{{ enrolment.discount | currency }}</td>
+            <td>{{ enrolment.total | currency }}</td>
+            <td>
+              <div class="row mt-1">
+                <div class="col-4 pl-2">
+                  <button (click)="deleteEnrolment(enrolment.id)" type="submit" class="btn btn-inline-block btn-sm btn-outline-danger fa-1x">
+                    <i class="fas fa-trash-alt mt-1"></i>
+                  </button>
+                </div>
+                <div class="col-4 pl-4">
+                  <button (click)="getPDF(enrolment.id)" type="submit" class="btn btn-inline-block btn-sm btn-outline-dark fa-1x">
+                    <i class="far fa-file-pdf mt-1"></i>
+                  </button>
+                </div>
+              </div>
+
+            </td> 
+          </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,26 @@
+<label class="sr-only" for="inlineFormInputGroup">Username</label>
+<div class="input-group mb-0" *ngIf="!name || name== ' '">
+    <input (input)="browseCustomer($event.target.value)" type="text" class="form-control" placeholder="Busque un cliente">
+    <div class="input-group-prepend">
+        <div class="input-group-text">
+            <img class="img-browse" src="assets/browse-user.png" alt="browse-user">
+        </div>
+    </div>
+</div>
+
+<label class="sr-only" for="inlineFormInputGroup">Username</label>
+<div class="input-group mb-0" *ngIf="name">
+    <input [(ngModel)]="name" disabled type="text" class="form-control">
+    <div class="input-group-prepend">
+        <button (click)="cancelCustomer()" type="submit" class="btn btn-inline-block btn-sm btn-danger fa-1x">
+            <i class="fas fa-trash-alt mt-1"></i>
+        </button>
+    </div>  
+</div>
+
+
+<div *ngFor="let customer of customers" class="list-group text-center mt-3">
+    <a *ngIf="customer.seeable" (click)="selectCustomer(customer)" class="list-group-item list-group-item-action list-group-item-dark text-white bg-secondary a-hover">
+        {{ customer.name }} {{ customer.surname }}
+    </a>
+</div>
